@@ -1,0 +1,6 @@
+{
+  "buildCommand": "yarn expo export --platform web",
+  "outputDirectory": "dist",
+  "installCommand": "yarn install",
+  "framework": null
+}
