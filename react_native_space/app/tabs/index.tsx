@@ -48,7 +48,8 @@ export default function DashboardScreen() {
 
   return (
     <LinearGradient colors={['#0A0A0A', '#12061F']} style={{ flex: 1 }}>
-      <SafeAreaView style={{ flex: 1 }} edges={['top']}>
+      <SafeAreaView edges={['top']} style={{ flex: 1 }}>
+        <View style={{ flex: 1 }}>
         <ScrollView
           contentContainerStyle={{ paddingBottom: 120 }}
           refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={colors.accent} />}
@@ -136,6 +137,7 @@ export default function DashboardScreen() {
             <Text style={styles.hint}>Tap again to release · chevron opens the goal</Text>
           ) : null}
         </ScrollView>
+        </View>
       </SafeAreaView>
     </LinearGradient>
   );

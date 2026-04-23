@@ -76,8 +76,10 @@ export default function GoalDetailScreen() {
   if (loading || !goal) {
     return (
       <LinearGradient colors={['#0A0A0A', '#12061F']} style={{ flex: 1 }}>
-        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <SafeAreaView style={{ flex: 1 }}>                                                //patch style error
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>        
           <Text style={{ color: colors.textMuted }}>Loading...</Text>
+          </View>
         </SafeAreaView>
       </LinearGradient>
     );
