@@ -69,9 +69,12 @@ export default function DashboardScreen() {
           <View style={styles.listHeader}>
             <Text style={styles.listTitle}>Goals</Text>
             {canCreate ? (
-              <Pressable onPress={() => router.push('/goal/create')} style={styles.addBtn}>
-                <Ionicons name="add" size={20} color="#fff" />
-                <Text style={styles.addBtnText}>Add Goal</Text>
+              <Pressable
+                onPress={() => router.push(`/goal/${g.id}`)}
+                hitSlop={10}
+                style={styles.msBtn}
+              >
+                <Text style={styles.msBtnText}>+ MS</Text>
               </Pressable>
             ) : null}
           </View>
@@ -105,9 +108,13 @@ export default function DashboardScreen() {
                     <View style={styles.cardHeader}>
                       <View style={[styles.cardDot, { backgroundColor: color }]} />
                       <Text style={styles.cardIdx}>V{g.vertexIndex + 1}</Text>
-                      <Pressable onPress={() => router.push(`/goal/${g.id}`)} hitSlop={10} style={styles.cardChev}>
-                        <Ionicons name="chevron-forward" size={18} color={colors.textMuted} />
-                      </Pressable>
+                      <Pressable                                                    //change for > to text button
+                        onPress={() => router.push(`/goal/${g.id}`)}
+                        hitSlop={10}
+                        style={styles.msBtn}
+                      >
+                        <Text style={styles.msBtnText}>+ MS</Text>
+                      </Pressable> 
                     </View>
                     <Text numberOfLines={2} style={styles.cardTitle}>{g.title}</Text>
                     <View style={styles.cardMeta}>
@@ -163,4 +170,6 @@ const styles = StyleSheet.create({
   msTrack: { marginTop: 8, height: 4, backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: 999, overflow: 'hidden' },
   msFill: { height: '100%', borderRadius: 999 },
   hint: { color: colors.textMuted, fontSize: 11, textAlign: 'center', marginTop: spacing.sm },
+  msBtn: {paddingHorizontal: 10, paddingVertical: 5, borderRadius: 999, backgroundColor: '#7C3AED' },
+  msBtnText: {color: '#fff', fontSize: 11, fontWeight: '700' },
 });

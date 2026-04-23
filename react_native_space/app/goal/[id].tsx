@@ -48,22 +48,30 @@ export default function GoalDetailScreen() {
     catch (e) { Alert.alert('Error', apiErrorMessage(e)); }
   };
 
+  //patch to fix delete milestone
   const deleteMs = async (m: Milestone) => {
-    const doIt = async () => { try { await MilestonesAPI.remove(m.id); await load(); } catch (e) { Alert.alert('Error', apiErrorMessage(e)); } };
-    if (Platform.OS === 'web') { if (confirm('Delete this milestone?')) doIt(); return; }
-    Alert.alert('Delete Milestone?', m.title, [
-      { text: 'Cancel', style: 'cancel' }, { text: 'Delete', style: 'destructive', onPress: doIt },
-    ]);
+  const doIt = async () => {
+    try { await MilestonesAPI.remove(m.id); await load(); }
+    catch (e) { Alert.alert('Error', apiErrorMessage(e)); }
   };
+  Alert.alert('Delete Milestone?', m.title, [
+    { text: 'Cancel', style: 'cancel' },
+    { text: 'Delete', style: 'destructive', onPress: doIt },
+  ]);
+};
 
+//patch to fix delete goals
   const deleteGoal = async () => {
-    if (!goal) return;
-    const doIt = async () => { try { await GoalsAPI.remove(goal.id); router.back(); } catch (e) { Alert.alert('Error', apiErrorMessage(e)); } };
-    if (Platform.OS === 'web') { if (confirm('Delete this goal?')) doIt(); return; }
-    Alert.alert('Delete Goal?', 'This cannot be undone.', [
-      { text: 'Cancel', style: 'cancel' }, { text: 'Delete', style: 'destructive', onPress: doIt },
-    ]);
+  if (!goal) return;
+  const doIt = async () => {
+    try { await GoalsAPI.remove(goal.id); router.back(); }
+    catch (e) { Alert.alert('Error', apiErrorMessage(e)); }
   };
+  Alert.alert('Delete Goal?', 'This cannot be undone.', [
+    { text: 'Cancel', style: 'cancel' },
+    { text: 'Delete', style: 'destructive', onPress: doIt },
+  ]);
+};
 
   if (loading || !goal) {
     return (

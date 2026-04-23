@@ -46,7 +46,7 @@ export default function LoginScreen() {
           <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
             <View style={styles.header}>
               <Text style={styles.brand}>gabits</Text>
-              <Text style={styles.tagline}>Build your goals, one micro-step at a time.</Text>
+              <Text style={styles.tagline}>Build your goals, one milestone at a time.</Text>
             </View>
             <View style={styles.form}>
               <TextField
