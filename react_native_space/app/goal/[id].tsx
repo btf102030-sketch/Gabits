@@ -51,26 +51,40 @@ export default function GoalDetailScreen() {
   //patch to fix delete milestone
   const deleteMs = async (m: Milestone) => {
   const doIt = async () => {
-    try { await MilestonesAPI.remove(m.id); await load(); }
-    catch (e) { Alert.alert('Error', apiErrorMessage(e)); }
+    try {
+      await MilestonesAPI.remove(m.id);
+      await load();
+    } catch (e) { Alert.alert('Error', apiErrorMessage(e)); }
   };
-  Alert.alert('Delete Milestone?', m.title, [
-    { text: 'Cancel', style: 'cancel' },
-    { text: 'Delete', style: 'destructive', onPress: doIt },
-  ]);
+
+  if (Platform.OS === 'web') {
+    if (confirm(`Delete milestone: ${m.title}?`)) doIt();
+  } else {
+    Alert.alert('Delete Milestone?', m.title, [
+      { text: 'Cancel', style: 'cancel' },
+      { text: 'Delete', style: 'destructive', onPress: doIt },
+    ]);
+  }
 };
 
-//patch to fix delete goals
-  const deleteGoal = async () => {
+  //patch to fix delete goals
+const deleteGoal = async () => {
   if (!goal) return;
   const doIt = async () => {
-    try { await GoalsAPI.remove(goal.id); router.back(); }
-    catch (e) { Alert.alert('Error', apiErrorMessage(e)); }
+    try {
+      await GoalsAPI.remove(goal.id);
+      router.replace('/tabs'); // Use replace to ensure we leave the deleted record page
+    } catch (e) { Alert.alert('Error', apiErrorMessage(e)); }
   };
-  Alert.alert('Delete Goal?', 'This cannot be undone.', [
-    { text: 'Cancel', style: 'cancel' },
-    { text: 'Delete', style: 'destructive', onPress: doIt },
-  ]);
+
+  if (Platform.OS === 'web') {
+    if (confirm('Delete this goal and all its milestones?')) doIt();
+  } else {
+    Alert.alert('Delete Goal?', 'This cannot be undone.', [
+      { text: 'Cancel', style: 'cancel' },
+      { text: 'Delete', style: 'destructive', onPress: doIt },
+    ]);
+  }
 };
 
   if (loading || !goal) {
@@ -105,6 +119,7 @@ export default function GoalDetailScreen() {
         ),
       }} />
       <SafeAreaView style={{ flex: 1 }} edges={['bottom']}>
+        <View style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={{ padding: spacing.lg, paddingBottom: 100 }}>
           <View style={[styles.banner, { borderColor: color }]}>
             <View style={[styles.dot, { backgroundColor: color }]} />
@@ -155,6 +170,7 @@ export default function GoalDetailScreen() {
             ))
           )}
         </ScrollView>
+        </View>
       </SafeAreaView>
     </LinearGradient>
   );

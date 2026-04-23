@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosInstance } from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const API_BASE = (process.env.EXPO_PUBLIC_API_URL as string | undefined)?.replace(/\/$/, '') || 'http://localhost:3000';
+const API_BASE = (process.env.EXPO_PUBLIC_API_URL as string | undefined)?.replace(/\/$/, '') || '';
 
 const TOKEN_KEY = 'gabits_token';
 export async function saveToken(t: string) { try { await AsyncStorage.setItem(TOKEN_KEY, t); } catch {} }

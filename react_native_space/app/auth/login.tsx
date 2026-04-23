@@ -42,6 +42,7 @@ export default function LoginScreen() {
   return (
     <LinearGradient colors={['#0A0A0A', '#1A0D26']} style={{ flex: 1 }}>
       <SafeAreaView style={{ flex: 1 }}>
+        <View style={{ flex: 1 }}>                                                                                    //fixes SafeAreaView style error
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}>
           <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
             <View style={styles.header}>
@@ -73,6 +74,7 @@ export default function LoginScreen() {
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
+        </View>
       </SafeAreaView>
     </LinearGradient>
   );

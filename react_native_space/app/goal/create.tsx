@@ -57,6 +57,7 @@ export default function GoalCreateScreen() {
     <LinearGradient colors={['#0A0A0A', '#12061F']} style={{ flex: 1 }}>
       <Stack.Screen options={{ title: editingId ? 'Edit Goal' : 'New Goal', headerStyle: { backgroundColor: '#0A0A0A' }, headerTintColor: colors.text }} />
       <SafeAreaView style={{ flex: 1 }} edges={['bottom']}>
+        <View style={{ flex: 1 }}>                                                                                    //removes error from SafeAreaView style
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
           <ScrollView contentContainerStyle={{ padding: spacing.lg, paddingBottom: 100 }}>
             {editingId && vertexIndex != null ? (
@@ -84,6 +85,7 @@ export default function GoalCreateScreen() {
             <GradientButton title={editingId ? 'Save' : 'Create Goal'} onPress={submit} loading={loading || initial} />
           </ScrollView>
         </KeyboardAvoidingView>
+        </View>
       </SafeAreaView>
     </LinearGradient>
   );
