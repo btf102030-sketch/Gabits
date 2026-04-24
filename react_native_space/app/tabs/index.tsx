@@ -68,17 +68,14 @@ export default function DashboardScreen() {
           </View>
 
           <View style={styles.listHeader}>
-            <Text style={styles.listTitle}>Goals</Text>
-            {canCreate ? (
-              <Pressable
-                onPress={() => router.push(`/goal/${g.id}`)}
-                hitSlop={10}
-                style={styles.msBtn}
-              >
-                <Text style={styles.msBtnText}>+ MS</Text>
-              </Pressable>
-            ) : null}
-          </View>
+  <Text style={styles.listTitle}>Goals</Text>
+  {canCreate ? (
+    <Pressable onPress={() => router.push('/goal/create')} style={styles.addBtn}>
+      <Ionicons name="add" size={20} color="#fff" />
+      <Text style={styles.addBtnText}>Add Goal</Text>
+    </Pressable>
+  ) : null}
+</View>
 
           {goals.length === 0 ? (
             <View style={styles.empty}>
