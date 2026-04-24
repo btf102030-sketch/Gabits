@@ -73,7 +73,7 @@ const deleteGoal = async () => {
   const doIt = async () => {
     try {
       await GoalsAPI.remove(goal.id);
-      router.replace('/tabs'); // Use replace to ensure we leave the deleted record page
+      router.replace('/(tabs)'); // Use replace to ensure we leave the deleted record page
     } catch (e) { Alert.alert('Error', apiErrorMessage(e)); }
   };
 

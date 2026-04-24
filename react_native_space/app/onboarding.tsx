@@ -34,7 +34,7 @@ export default function OnboardingScreen() {
     setErr(null); setLoading(true);
     try {
       await completeOnboarding();
-      router.replace('/tabs');
+      router.replace('/(tabs)');
     } catch (e) { setErr(apiErrorMessage(e)); }
     finally { setLoading(false); }
   };
