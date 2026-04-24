@@ -67,7 +67,7 @@ export default function GoalDetailScreen() {
   }
 };
 
-  //patch to fix delete goals
+  /*patch to fix delete goals*/
 const deleteGoal = async () => {
   if (!goal) return;
   const doIt = async () => {
